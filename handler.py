@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import pickle
 from flask import Flask, request
+from flask_cors import CORS
 
 from api_preprocessing import ApiPreprocessing
 
@@ -10,6 +11,7 @@ classifier = pickle.load(open('deploy/cardio_kernel_svm.pkl', 'rb'))
 
 # instanciate flask
 app = Flask(__name__)
+CORS(app)
 
 # route for predictions
 @app.route('/predict', methods=['POST'])
